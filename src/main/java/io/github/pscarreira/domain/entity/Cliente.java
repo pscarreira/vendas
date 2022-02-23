@@ -3,6 +3,7 @@ package io.github.pscarreira.domain.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Cliente {
@@ -14,6 +15,9 @@ public class Cliente {
 
   @Column(name="nome", length = 100)
   private String nome;
+
+  @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )
+  private Set<Pedido> pedidos;
 
   public Integer getId() {
     return id;
@@ -42,6 +46,14 @@ public class Cliente {
   public Cliente(Integer id, String nome) {
     this.id = id;
     this.nome = nome;
+  }
+
+  public Set<Pedido> getPedidos() {
+    return pedidos;
+  }
+
+  public void setPedidos(Set<Pedido> pedidos) {
+    this.pedidos = pedidos;
   }
 
   @Override

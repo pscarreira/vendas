@@ -34,10 +34,13 @@ public class VendasApplication {
       System.out.println(clienteRepository.existsById(2));
 
       // Atualizando cliente 1
-      clienteRepository.save(new Cliente(1, "João das Couves da Silva"));
+      clienteRepository.save(new Cliente(1, "João das Couves dos Santos"));
 
       // Recuperando todos os clientes novamente
       clienteRepository.findAll().forEach(System.out::println);
+
+      // Encontrando por nome parecido
+      clienteRepository.findClienteByNome("dos Santos").forEach(System.out::println);
 
     };
   }
